@@ -3,7 +3,6 @@ import zipfile
 import csv
 from io import TextIOWrapper
 from openpyxl import load_workbook
-import pathlib
 import download
 
 
@@ -14,10 +13,10 @@ def test_download_file():
 
 
 def test_create_zip():
-    directory = pathlib.Path("files/")
-    with zipfile.ZipFile("files.zip", mode="w") as archive:
-        for file_path in directory.iterdir():
-            archive.write(file_path, arcname=file_path.name)
+    with zipfile.ZipFile("files/files.zip", mode="w") as archive:
+        archive.write("files/test_pdf.pdf")
+        archive.write("files/test_csv.csv")
+        archive.write("files/test_xlsx.xlsx")
 
 
 def test_read_files():
